@@ -1,3 +1,33 @@
+설정폴더
+-v %cd%\conf.d:/etc/mysql/conf.d
+데이터폴더
+-v %cd%\data:/var/lib/mysql
+
+그냥 생으로 시작
 docker run --name db -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d mariadb:latest
 
-docker exec -it db bash
+설정 폴더 공유
+docker run --name db -v %cd%\conf.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d mariadb:latest
+
+데이터 폴더 공유
+docker run --name db -v %cd%\data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d mariadb:latest
+
+설정, 데이터 폴더 공유
+docker run --name db -v %cd%\data:/var/lib/mysql -v %cd%\conf.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d mariadb:latest
+
+설정, 데이터 폴더 공유, 데몬, 리스타트
+docker run --name db -v %cd%\data:/var/lib/mysql -v %cd%\conf.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d --restart always mariadb:latest
+
+===================================================================================================
+
+설정, 데이터 폴더 공유, 데몬, 리스타트, 사용자 아이디, 사용자 비번, DB (해당 Db에 대한 사용자는 모든 권한에 대해 GRANT)
+docker run --name db -v %cd%\data:/var/lib/mysql -v %cd%\conf.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=sad -e MYSQL_PASSWORD=sad -e MYSQL_DATABASE=super_sad -p 9999:8080 -d --restart always mariadb:latest
+
+adminer임..
+docker run --name db-adminer -p 8080:8080 --restart always adminer:latest
+
+===================================================================================================
+
+쉘에 접속
+docker exec -it db sh
+docker exec -it db mysql
