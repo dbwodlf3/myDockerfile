@@ -1,0 +1,3 @@
+docker run --name db -e MYSQL_ROOT_PASSWORD=root -p 9999:8080 -d mariadb:latest
+
+docker exec -it db bash
