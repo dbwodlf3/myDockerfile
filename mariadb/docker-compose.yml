@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mariadb:latest
+    ports:
+      - 9999:8080
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=sad
+      - MYSQL_PASSWORD=sad
+      - MYSQL_DATABASE=super_sad
+    volumes:
+      - ./conf.d:/etc/mysql/conf.d
+      - ./data:/var/lib/mysql
+    restart: "yes"
+    restart: "always"

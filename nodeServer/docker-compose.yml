@@ -1,0 +1,15 @@
+# https://hub.docker.com/_/nginx
+# docker-compose up -d
+
+version: "3.7"
+
+services:
+  nginx:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./www:/var/www
+      - ./pm2:/pm2
+      - ./conf.d:/etc/nginx/conf.d
+    entrypoint: nginx -g 'daemon off;' && pm2 start /pm2/app.js

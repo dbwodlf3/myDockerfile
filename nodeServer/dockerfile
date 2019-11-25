@@ -1,0 +1,10 @@
+FROM nginx:latest
+
+# RUN echo "deb http://apt.pm2.io/ubuntu stable main" | tee /etc/apt/sources.list.d/pm2.list
+RUN apt-get update
+RUN apt-get install -y nodejs
+RUN apt-get install -y curl
+RUN curl -L https://npmjs.org/install.sh | sh
+RUN npm install -g pm2
+# RUN apt-get install -y pm2
+RUN echo Good job.

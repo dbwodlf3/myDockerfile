@@ -1,3 +1,7 @@
 Container (Process)
 Image (Process를 만드는 저장된 파일)
 Container => Image => Container
+
+데몬으로 실행됨.
+Init으로 실행됨..
+docker-compuse up -d
